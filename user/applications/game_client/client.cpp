@@ -65,7 +65,7 @@ void setup() {
 	pinMode(buttonSend, INPUT_PULLUP);
 	// publish/subscribe
 	if (!client.isConnected()) {
-		Serial.printlnf("connected: %d", client.connect("sparkclient"));
+		Serial.printlnf("connected: %d", client.connect(Spark.deviceID()));
 	}
 
 }
@@ -100,6 +100,8 @@ void loop() {
 
 	// Wait 1 second...
 	delay(5);
+	if (client.isConnected())
+		client.loop();
 
 	// And repeat!
 }
